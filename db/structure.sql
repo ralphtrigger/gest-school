@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 /**
  * db/structure.sql
  *
@@ -64,8 +65,9 @@ CREATE TABLE IF NOT EXISTS Livre (
 -- Niveau
 CREATE TABLE IF NOT EXISTS Niveau (
     id_niv INTEGER NOT NULL auto_increment,
+    code_niv VARCHAR(4) NOT NULL,
     lib_niv VARCHAR(50) NOT NULL,
-    CONSTRAINT un_niv UNIQUE (lib_niv),
+    CONSTRAINT un_niv UNIQUE (code_niv),
     CONSTRAINT pk_niv PRIMARY KEY (id_niv)
 );
 
@@ -256,7 +258,7 @@ CREATE TABLE IF NOT EXISTS Horaire_Cours (
 CREATE TABLE IF NOT EXISTS Inscrire (
     id_el INTEGER,
     code_cl VARCHAR(10),
-    statut_insc VARCHAR(10),
+    statut_insc ENUM('EN ATTENTE', 'CONFIRMEE'),
     CONSTRAINT pk_insc PRIMARY KEY (id_el, code_cl),
     CONSTRAINT fk_insc_el FOREIGN KEY (id_el)
         REFERENCES Eleve(id_el)

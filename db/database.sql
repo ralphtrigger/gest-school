@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2016 trigger
  *
  * This program is free software: you can redistribute it and/or modify
