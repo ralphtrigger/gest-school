@@ -1,14 +1,14 @@
 <?php
-require '../models/classemodel.php';
-require '../models/studentmodel.php';
+// web/index.php
 
-$classes = getAllClasses();
+require __DIR__.'/../vendor/autoload.php';
 
-// get students from the class supplied
-if (isset($_POST['classe'])) {
-    $classe = $_POST['classe'];
-    $students = getStudentByClasse($classe);
-    $nbStudents = 1;
-}
+$app = new Silex\Application();
 
-require '../views/home.php';
+// Enable debug mode
+$app['debug'] = true;
+
+// Routes
+require __DIR__.'/../app/routes.php';
+
+$app->run();
