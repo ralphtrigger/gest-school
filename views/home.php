@@ -15,56 +15,62 @@
 			<h1>GestSchool Project</h1>
 		</header>
 		<div class="text-center well">
-		<form action="" role="form" class="form-inline" method="post">
-		<div class="form-group">
-<!-- 			<label for="classe" class="control-label"><h3>Votre classe :</h3></label>  -->
-			<select id="classe" name="classe" class="form-control">
-			<option value="">Choisissez votre classe</option>
-        	<?php
-            while ($code = mysqli_fetch_assoc($classes)) {
-                $codeClasse = $code['code_cl'];
-                if (isset($_POST['classe']) && $_POST['classe'] == $codeClasse) { 
-            ?>
-            	<option value="<?= $codeClasse ?>" selected><?= $codeClasse ?></option>
-        	<?php } else { ?>
-            	<option value="<?= $codeClasse ?>"><?= $codeClasse ?></option>
-        	<?php }} ?>
-        	</select>
-        	</div> 
-        	<input type="submit" value="Afficher la liste" class="btn btn-primary" />
-		</form>
+			<form action="" role="form" class="form-inline" method="post">
+				<div class="form-group">
+					<select id="classe" name="classe" class="form-control">
+						<option value="">Choisissez votre classe</option>
+                    	<?php foreach ($classes as $class) : ?>
+                    	<?php $codeClasse = $class->getCode(); ?>
+                        <?php if (isset($_POST['classe']) && $_POST['classe'] == $codeClasse): ?>
+                        	<option value="<?= $codeClasse ?>" selected>
+                        		<?= $codeClasse ?>
+                        	</option>
+                    	<?php else: ?>
+                        	<option value="<?= $codeClasse ?>">
+                        		<?= $codeClasse ?>
+                        	</option>
+                    	<?php endif ?>
+                    	<?php endforeach ?>
+                	</select>
+				</div>
+				<input type="submit" value="Afficher la liste"
+					class="btn btn-primary" />
+			</form>
 		</div>
-	<?php if (isset($_POST['classe']) && mysqli_num_rows($students) > 0) { ?>
+	<?php if (isset($_POST['classe'])) : ?>
 	<div class="table-responsive">
-	<table class="table table-hover">
-			<caption>Liste des Élèves de la <?= $classe ?></caption>
-			<thead>
-				<tr>
-					<th>Numéro</th>
-					<th>Matricule</th>
-					<th>Nom(s) et Prénom(s)</th>
-					<th>Date de Naissance</th>
-					<th>Sexe</th>
-				</tr>
-			</thead>
-			<tbody>
-			<?php foreach ($students as $std) : ?>
-				<tr>
-					<td><?php echo $nbStudents++?></td>
-					<td><?php echo $std['matricule_el'] ?></td>
-					<td><?php echo $std['nom_el'] . " " . $std['prenom_el'] ?></td>
-					<td><?php echo $std['date_naiss_el'] ?></td>
-					<td><?php echo $std['sexe_el']?></td>
-				</tr>
-			<?php endforeach; ?>
-		</tbody>
-		</table>
+			<table class="table table-hover">
+				<caption>Liste des Élèves de la <?= $classe ?></caption>
+				<thead>
+					<tr>
+						<th>Numéro</th>
+						<th>Matricule</th>
+						<th>Nom(s) et Prénom(s)</th>
+						<th>Date de Naissance</th>
+						<th>Sexe</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php if (count($students)): ?>
+				<?php foreach ($students as $std) : ?>
+					<tr>
+						<td><?php echo $nbStudents++?></td>
+						<td><?php echo $std->getMatricule() ?></td>
+						<td><?php echo $std->getName() . " " . $std->getSurname() ?></td>
+						<td><?php echo date_format($std->getBirthdate(), "d/m/Y") ?></td>
+						<td><?php echo $std->getSexe() ?></td>
+					</tr>
+				<?php endforeach ?>
+				<?php else: ?>
+					<div class="alert alert-warning">No students yet:</div>
+				<?php endif ?>
+				</tbody>
+			</table>
 		</div>
-    	<?php } ?>
+    	<?php endif ?>
     	<hr />
-		<footer id="footer">
-			GestSchool est un projet d'initiation pour la Tle TI
-		</footer>
+		<footer id="footer"> GestSchool est un projet d'initiation pour la Tle
+			TI </footer>
 	</div>
 </body>
 </html>
