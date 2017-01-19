@@ -2,7 +2,12 @@
 	"require" : {
 		"silex/silex" : "~2.0",
 		"doctrine/dbal" : "~2.5",
-		"twig/twig" : "~1"
+		"twig/twig" : "~2.0",
+		"symfony/twig-bridge" : "~2",
+		"symfony/asset" : "~2.8",
+		"symfony/config" : "~2.8",
+		"symfony/form" : "~2.8",
+		"symfony/translation" : "~2.8"
 	},
 	"autoload" : {
 		"psr-4" : {

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="well text-center">
+  {{ form_errors(form.code) }}
+  {{ form_start(form, {'attr' : {'class':'form-inline'} }) }}
+  <div class="form-group">
+    {{ form_widget(form.code, {'attr' : {
+        'class':'form-control',
+        'placeholder':'Choisir votre classe'} 
+      }) }}
+    <input type="submit" value="Afficher la liste" class="btn btn-primary" />
+  </div>
+  {{ form_end(form) }}
+</div>
+{% endblock %}
+
+

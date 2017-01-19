@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+{% block head %}
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width = device-width, initiale-scale = 1.0" />
+<title>{% block title %}{% endblock %}</title>
+<link href="{{ asset('css/gestschool.css') }}" rel="stylesheet" />
+<link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}"
+	rel="stylesheet" />
+{% endblock %}
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h2>GestSchool Project</h2>
+		</header>
+		{% block content %}
+		{% endblock %}
+		<br />
+		<footer id="footer">
+			{% block footer %}
+			GestSchool est un projet d'initiation pour la Tle TI
+			{% endblock %}
+		</footer>
+	</div>
+</body>
+</html>
+
