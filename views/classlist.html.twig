@@ -8,25 +8,9 @@ List -
 {% endblock %}
 
 {% block content %}
-{# <div class="text-center well"> <form action="{{ path('home') }}" role="form"
-class="form-inline" method="post"> <div class="form-group"> <select id="classe"
-name="classe" class="form-control"> <option value="">Choisissez votre classe</option>
-{% for class in classes %} <option value="{{ class.code }}" {% if class.code == code
-%} selected {% endif %}> {{ class.code }} </option> {% endfor %} </select> </div>
-<input type="submit" value="Afficher la liste" class="btn btn-primary" /> </form>
-</div> #}
-<div class="well text-center">
-  {{ form_start(form, {'attr' : {'class':'form-inline'} }) }}
-  <div class="form-group">
-    {{ form_errors(form.code) }}
-    {{ form_widget(form.code, {'attr' : {
-        'class':'form-control',
-        'placeholder':'Choisir votre classe'} 
-      }) }}
-    <input type="submit" value="Afficher la liste" class="btn btn-primary" />
-  </div>
-  {{ form_end(form) }}
-</div>
+
+{% include 'chooseclass_form.html.twig' with {'form' : form} %}
+
 {% if students %}
 <div class="table-responsive">
   <table class="table table-hover">

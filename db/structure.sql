@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS Enseignant (
     id_ens INTEGER auto_increment,
     nom_ens VARCHAR(100) NOT NULL,
     prenom_ens VARCHAR(100),
-    id_compte INTEGER NOT NULL,
+    id_compte INTEGER, /*NOT NULL,*/
     CONSTRAINT pk_ens PRIMARY KEY (id_ens),
     CONSTRAINT fk_ens_cpt FOREIGN KEY (id_compte)
         REFERENCES Compte(id_compte)
